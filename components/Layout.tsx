@@ -6,7 +6,6 @@ import Sidebar from "./Sidebar";
 
 type LayoutProps = {
   children?: ReactNode;
-  isSidebarOpen: boolean;
 };
 
 export const siteTitle = "stefano || Front-End Developer";
@@ -23,6 +22,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   return (
     <div>
       <Head>
+        <title>{siteTitle}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
@@ -31,10 +31,10 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
         <meta name="og:title" content="" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Navbar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <Sidebar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <main>{children}</main>
-      <Footer />
+      <Navbar toggleSidebar={toggleSidebar} />
+      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      {children}
+      {/* <Footer /> */}
     </div>
   );
 };
