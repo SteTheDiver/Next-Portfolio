@@ -11,12 +11,6 @@ import styled from "styled-components";
 
 export default function Home() {
   return (
-    // <Layout isSidebarOpen={false}>
-    //   <div className={styles.container}>
-    //     <Head>
-    //       <title>{siteTitle}</title>
-    //     </Head>
-
     <Wrapper>
       <section className="section-center">
         <div className="name-container">
@@ -38,8 +32,6 @@ export default function Home() {
             </section> */}
       </section>
     </Wrapper>
-    //   </div>
-    // </Layout>
   );
 }
 
