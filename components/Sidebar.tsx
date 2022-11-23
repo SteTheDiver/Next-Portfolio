@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export type Props = {
   isSidebarOpen: boolean;
-  setSidebarOpen: Function;
+  toggleSidebar: () => void;
 };
 
 const Sidebar = (props: Props) => {
@@ -19,27 +19,34 @@ const Sidebar = (props: Props) => {
         }
       >
         <section className="content">
+          <header className="content-header">
+            <button className="btn-close" onClick={props.toggleSidebar}>
+              <FaTimes />
+            </button>
+          </header>
           <ul className="nav-links">
             <li>
-              <Link href="">Home</Link>
+              <Link className="link" href="/">
+                Home
+              </Link>
             </li>
             <li>
-              <Link href="">Projects</Link>
+              <Link className="link" href="">
+                Projects
+              </Link>
             </li>
             <li>
-              <Link href="">About</Link>
+              <Link className="link" href="/about">
+                About
+              </Link>
             </li>
             <li>
-              <Link href="">Contact</Link>
+              <Link className="link" href="">
+                Contact
+              </Link>
             </li>
           </ul>
         </section>
-        <button
-          className="btn-close"
-          onClick={() => props.setSidebarOpen(!props.isSidebarOpen)}
-        >
-          <FaTimes />
-        </button>
       </div>
     </Wrapper>
   );
@@ -53,22 +60,61 @@ const Wrapper = styled.aside`
     /* background: green; */
     position: fixed;
     inset: 0;
-    /* background: rgba(0, 0, 0, 0.7); */
+    background: rgba(0, 0, 0, 1);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: -1;
     opacity: 0;
     transition: var(--transition);
-  }
-  .show-sidebar {
-    z-index: 99;
-    opacity: 1;
+    height: 100%;
+
+    .content {
+      /* border: 1px solid grey; */
+      /* padding: 30px; */
+
+      .content-header {
+        display: flex;
+        justify-content: end;
+      }
+      .nav-links {
+        width: fit-content;
+        flex-direction: column;
+        transform: translate(100);
+
+        li {
+          margin-bottom: 20px;
+
+          .link {
+            margin-bottom: 50px;
+            color: #7b8d93;
+
+            :hover {
+              color: orange;
+            }
+          }
+        }
+      }
+    }
   }
 
   .btn-close {
     background-color: transparent;
-    color: red;
+    display: flex;
+    height: 25px;
+    width: 25px;
+    align-items: center;
+    border-radius: 50%;
+    color: #7b8d93;
+    cursor: pointer;
+
+    :hover {
+      color: orange;
+    }
+  }
+  .show-sidebar {
+    z-index: 99;
+    opacity: 1;
   }
 `;
 
