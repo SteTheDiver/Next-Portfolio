@@ -14,22 +14,15 @@ export default function Home() {
     <Wrapper>
       <section className="section-center">
         <div className="name-container">
-          <h2>Cattaneo</h2>
-          <h2 className="surname">Stefano</h2>
+          <h2 className="name">Stefano</h2>
+          <h2 className="surname">Cattaneo</h2>
         </div>
         <div className="description">
-          <h4>I am a FrontEnd Developer</h4>
+          <h4>Frontend Developer</h4>
         </div>
         {/* A combination of sentences that changes and always makes sense with a set timeout function to repeat it eveynow and then */}
         {/* gear setting icon */}
         <button className="btn">Get in touch</button>
-        {/* <section>
-              <Image src={css} height={80} width={80} alt="css" />
-              <Image src={github} height={80} width={80} alt="css" />
-              <Image src={html5} height={80} width={80} alt="css" />
-              <Image src={html5} height={80} width={80} alt="css" />
-              <Image src={html5} height={80} width={80} alt="css" />
-            </section> */}
       </section>
     </Wrapper>
   );
@@ -51,10 +44,12 @@ const Wrapper = styled.main`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      font-size: 35px;
+      font-size: 25px;
       padding-bottom: 0.5rem;
+      text-transform: uppercase;
 
       .name {
+        color: white;
       }
 
       .surname {
@@ -64,7 +59,7 @@ const Wrapper = styled.main`
       h2 {
         margin: 0 10px;
         font-weight: 600;
-        font-size: 50px;
+        /* font-size: 50px; */
 
         @media (min-width: 980px) {
           font-size: 60px;
@@ -81,21 +76,6 @@ const Wrapper = styled.main`
         font-size: 25px;
         font-weight: normal;
       }
-    }
-  }
-
-  .btn {
-    background-color: orange;
-    padding: 10px;
-    border-radius: 4px;
-    font-family: var(--font-text);
-    font-size: 17px;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    :hover {
-      background-color: white;
-      color: black;
     }
   }
 `;
