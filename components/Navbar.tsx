@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+
 import styled from "styled-components";
 import Link from "next/link";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useRouter } from "next/router";
 
 type Props = {
   toggleSidebar: () => void;
 };
 
 const Navbar = (props: Props) => {
+  const router = useRouter();
+
+  // console.log(isActive);
+
   return (
     <Wrapper>
       <div className="navbar-center">
@@ -22,22 +28,40 @@ const Navbar = (props: Props) => {
         {/* Here we will map trought the array of obj containing all the info: id, text, path */}
         <ul className="nav-links">
           <li>
-            <Link className="link" href="/">
+            <Link
+              className={router.pathname === "/" ? "link link-active" : "link"}
+              href="/"
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link className="link" href="">
+            <Link
+              className={
+                router.pathname === "/projects" ? "link link-active" : "link"
+              }
+              href=""
+            >
               Projects
             </Link>
           </li>
           <li>
-            <Link className="link" href="/about">
+            <Link
+              className={
+                router.pathname === "/about" ? "link link-active" : "link"
+              }
+              href="/about"
+            >
               About
             </Link>
           </li>
           <li>
-            <Link className="link" href="">
+            <Link
+              className={
+                router.pathname === "/contact" ? "link link-active" : "link"
+              }
+              href=""
+            >
               Contact
             </Link>
           </li>
@@ -54,7 +78,7 @@ const Wrapper = styled.nav`
   box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
   background-color: black;
-  height: var(--nav-height);
+  /* height: var(--nav-height); */
 
   .navbar-center {
     display: flex;
@@ -92,6 +116,10 @@ const Wrapper = styled.nav`
 
       .link {
         color: #7b8d93;
+      }
+
+      .link-active {
+        color: orange;
       }
     }
   }
