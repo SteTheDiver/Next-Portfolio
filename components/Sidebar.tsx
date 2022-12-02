@@ -26,7 +26,7 @@ const Sidebar = (props: Props) => {
           </header>
           <ul className="nav-links">
             <li>
-              <Link className="link" href="/">
+              <Link className="link" href="/" onClick={props.toggleSidebar}>
                 Home
               </Link>
             </li>
@@ -36,7 +36,7 @@ const Sidebar = (props: Props) => {
               </Link>
             </li>
             <li>
-              <Link className="link" href="/about">
+              <Link className="link" href="/about" onClick={props.toggleSidebar}>
                 About
               </Link>
             </li>
