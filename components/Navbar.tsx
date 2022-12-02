@@ -38,16 +38,6 @@ const Navbar = (props: Props) => {
           <li>
             <Link
               className={
-                router.pathname === "/projects" ? "link link-active" : "link"
-              }
-              href=""
-            >
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={
                 router.pathname === "/about" ? "link link-active" : "link"
               }
               href="/about"
@@ -58,9 +48,19 @@ const Navbar = (props: Props) => {
           <li>
             <Link
               className={
+                router.pathname === "/projects" ? "link link-active" : "link"
+              }
+              href="/projects"
+            >
+              Projects
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={
                 router.pathname === "/contact" ? "link link-active" : "link"
               }
-              href=""
+              href="/contact"
             >
               Contact
             </Link>
