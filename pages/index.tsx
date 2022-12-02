@@ -34,6 +34,18 @@ const Wrapper = styled.main`
   justify-content: center;
   display: grid;
   align-content: center;
+  animation: fadeIn 0.7s;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
 
   .section-center {
     display: flex;

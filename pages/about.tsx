@@ -58,8 +58,8 @@ const Wrapper = styled.main`
   align-content: center;
   justify-content: center;
   justify-items: center;
-  animation: fadeIn 0.2s;
-  
+  animation: fadeIn 0.7s;
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -70,7 +70,7 @@ const Wrapper = styled.main`
       opacity: 1;
     }
   }
-  
+
   .about-container {
     /* width: 100%; */
     max-width: 500px;
