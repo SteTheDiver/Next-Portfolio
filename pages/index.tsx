@@ -11,7 +11,7 @@ import styled from "styled-components";
 
 export default function Home() {
   return (
-    <Wrapper>
+    <Wrapper className="page">
       <section className="section-center">
         <div className="name-container">
           <h2 className="name">Stefano</h2>
@@ -29,65 +29,41 @@ export default function Home() {
 }
 
 const Wrapper = styled.main`
-  width: 100%;
-  height: calc(100vh - var(--nav-height));
-  justify-content: center;
-  display: grid;
-  align-content: center;
-  animation: fadeIn 0.7s;
+  .name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 25px;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-5%);
+    .name {
+      color: white;
     }
-    100% {
-      transform: translateY(0%);
-      opacity: 1;
+
+    .surname {
+      color: orange;
+    }
+
+    h2 {
+      margin: 0 10px;
+      font-weight: 600;
+      /* font-size: 50px; */
+
+      @media (min-width: 980px) {
+        font-size: 60px;
+      }
     }
   }
-
-  .section-center {
+  .description {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 2rem;
 
-    .name-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    h4 {
       font-size: 25px;
-      padding-bottom: 0.5rem;
-      text-transform: uppercase;
-
-      .name {
-        color: white;
-      }
-
-      .surname {
-        color: orange;
-      }
-
-      h2 {
-        margin: 0 10px;
-        font-weight: 600;
-        /* font-size: 50px; */
-
-        @media (min-width: 980px) {
-          font-size: 60px;
-        }
-      }
-    }
-    .description {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      padding-bottom: 2rem;
-
-      h4 {
-        font-size: 25px;
-        font-weight: normal;
-      }
+      font-weight: normal;
     }
   }
 `;

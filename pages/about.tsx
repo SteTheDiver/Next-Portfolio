@@ -13,6 +13,7 @@ const about = () => {
 
   return (
     <Wrapper
+      className="page"
       style={isModalOpen ? { visibility: "hidden" } : { visibility: "visible" }}
     >
       <div className="about-container">
@@ -51,25 +52,7 @@ const about = () => {
 };
 
 const Wrapper = styled.main`
-  width: 100%;
-  height: 100vh;
-  max-height: calc(100vh - 8rem);
-  display: grid;
-  align-content: center;
-  justify-content: center;
-  justify-items: center;
-  animation: fadeIn 0.7s;
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-5%);
-    }
-    100% {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-  }
 
   .about-container {
     /* width: 100%; */
