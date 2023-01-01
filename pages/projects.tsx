@@ -8,7 +8,7 @@ const projects = () => {
 
   return (
     <Wrapper className="page">
-      <div className="section-center">
+      <div className="section-centered">
         <header>
           <h1 style={{ color: "white" }}>
             Personal <span style={{ color: "orange" }}>Portfolio</span>
@@ -16,13 +16,25 @@ const projects = () => {
         </header>
         <span className="separator"></span>
 
-        <ProjectsContainer show={1} />
+        <ProjectsContainer />
       </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.main`
+  .section-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+
+  }
+  @media screen and (min-width:1400px) {
+    .section-centered {
+      max-width: 60vw;
+    }
+  }
   header {
     display: flex;
     justify-content: flex-start;
