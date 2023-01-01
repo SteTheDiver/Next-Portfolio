@@ -8,78 +8,68 @@ import {
 } from "react-icons/md";
 
 const ProjectsContainer = (props: any) => {
-  // needs to fix desktop logic
-  const { children, show, infiniteLoop } = props;
 
   const [showItems, setShowItems] = useState(1);
-  const [activeIndex, setActiveIndex] = useState(infiniteLoop ? showItems : 0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [length, setLength] = useState(projects.length);
 
-  const [isRepeating, setIsRepeating] = useState(
-    infiniteLoop && children.projects > showItems
-  );
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  // const [isRepeating, setIsRepeating] = useState(
+  //   infiniteLoop && children.projects > showItems
+  // );
+  // const [transitionEnabled, setTransitionEnabled] = useState(true);
 
-  const handlePrev = (index: number) => {
+  const handlePrev = (id: number) => {
     if (activeIndex == 0) {
       setActiveIndex(0);
-      console.log(index);
     } else {
       setActiveIndex(activeIndex - 1);
-      console.log(activeIndex);
     }
   };
 
-  const handleNext = (index: number) => {
-    if (activeIndex === projects.length - 3) {
-      //to fix in order to be desktop frienly
+  const handleNext = (id: number) => {
+    if (activeIndex === projects.length - showItems) {
       return;
-      // setActiveIndex(0);
-      // console.log(index, "index next first if");
     } else {
       setActiveIndex(activeIndex + 1);
       console.log(activeIndex);
     }
   };
 
-  console.log(activeIndex, "active index");
-
   useEffect(() => {
-    if (window.innerWidth < 600) {
+    if (window.innerWidth < 700) {
       setShowItems(1);
-    } else if (window.innerWidth > 601 && window.innerWidth < 900) {
+    } else if (window.innerWidth > 701 && window.innerWidth < 1700) {
       setShowItems(2);
     } else {
       setShowItems(3);
     }
 
-    const interval = setTimeout(() => {
-      if (activeIndex === projects.length - 1) {
-        setActiveIndex(0);
-        console.log(activeIndex);
-      } else {
-        setActiveIndex(activeIndex + 1);
-        console.log(activeIndex, "active Index");
-      }
-    }, 6000);
+    // const interval = setTimeout(() => {
+    //   if (activeIndex === projects.length - 1 && window.innerWidth < 700) {
+    //     setActiveIndex(0);
+    //     // setShowItems(1);
+    //     console.log(activeIndex);
+    //   } else if (
+    //     activeIndex === projects.length - 2 &&
+    //     window.innerWidth > 701 &&
+    //     window.innerWidth < 1700
+    //   ) {
+    //     setActiveIndex(0);
+    //   } else if (
+    //     activeIndex === projects.length - 3 &&
+    //     window.innerWidth > 1701
+    //   ) {
+    //     setActiveIndex(0);
+    //   } else {
+    //     setActiveIndex(activeIndex + 1);
+    //     console.log(activeIndex, "active Index");
+    //   }
+    // }, 2000);
 
-    return () => {
-      clearTimeout(interval);
-    };
+    // return () => {
+    //   clearTimeout(interval);
+    // };
   }, [activeIndex]);
-
-  // useEffect(() => {
-  //   setLength(projects.length);
-  //   setIsRepeating(infiniteLoop && projects.length > show);
-  // }, [projects, infiniteLoop, show]);
-
-  // useEffect(() => {
-  //   if (isRepeating) {
-  //     if (activeIndex === show || activeIndex === length) {
-  //       setTransitionEnabled(true);
-  //     }
-  //   }
-  // }, [activeIndex, isRepeating, show, length]);
 
   return (
     <Wrapper>
@@ -90,10 +80,9 @@ const ProjectsContainer = (props: any) => {
               className={`carousel-content show-${showItems}`}
               style={{
                 transform: `translateX(-${activeIndex * (100 / showItems)}%)`,
-                transition: !transitionEnabled ? "none" : undefined,
               }}
             >
-              {projects.map((project: any, id: any) => {
+              {projects.map((project: any) => {
                 return <Project key={project.id} {...project} />;
               })}
             </div>
@@ -132,19 +121,12 @@ const ProjectsContainer = (props: any) => {
 };
 
 const Wrapper = styled.section`
-  margin-top: 5rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   width: 100%;
 
   .container {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr; */
-    /* max-width: 500px; */
     display: flex;
     width: 100%;
     position: relative;
@@ -155,7 +137,6 @@ const Wrapper = styled.section`
       width: 100%;
       overflow: hidden;
       gap: 2rem;
-      /* grid-template-columns:repeat(auto-fit,minmax(300px,1fr)) ; */
 
       overflow: hidden;
       width: 100%;
@@ -177,7 +158,6 @@ const Wrapper = styled.section`
         width: 100%;
         flex-shrink: 0;
         flex-grow: 1;
-        /* margin:0 5px; */
       }
 
       .carousel-content.show-2 > * {
@@ -192,15 +172,6 @@ const Wrapper = styled.section`
         width: calc(100% / 4);
       }
     }
-
-    @media (min-width: 992px) {
-      /* display: flex; */
-      /* flex-direction: column; */
-      /* display: grid; */
-      /* grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) ; */
-      /* flex-direction: row; */
-      /* gap: 2rem; */
-    }
   }
 
   footer {
@@ -209,7 +180,6 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    /* border: 1px solid red; */
     padding: 20px 0;
 
     .icon {
