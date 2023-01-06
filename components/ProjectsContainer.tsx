@@ -44,31 +44,31 @@ const ProjectsContainer = (props: any) => {
       setShowItems(3);
     }
 
-    // const interval = setTimeout(() => {
-    //   if (activeIndex === projects.length - 1 && window.innerWidth < 700) {
-    //     setActiveIndex(0);
-    //     // setShowItems(1);
-    //     console.log(activeIndex);
-    //   } else if (
-    //     activeIndex === projects.length - 2 &&
-    //     window.innerWidth > 701 &&
-    //     window.innerWidth < 1700
-    //   ) {
-    //     setActiveIndex(0);
-    //   } else if (
-    //     activeIndex === projects.length - 3 &&
-    //     window.innerWidth > 1701
-    //   ) {
-    //     setActiveIndex(0);
-    //   } else {
-    //     setActiveIndex(activeIndex + 1);
-    //     console.log(activeIndex, "active Index");
-    //   }
-    // }, 2000);
+    const interval = setTimeout(() => {
+      if (activeIndex === projects.length - 1 && window.innerWidth < 700) {
+        setActiveIndex(0);
+        // setShowItems(1);
+        console.log(activeIndex);
+      } else if (
+        activeIndex === projects.length - 2 &&
+        window.innerWidth > 701 &&
+        window.innerWidth < 1700
+      ) {
+        setActiveIndex(0);
+      } else if (
+        activeIndex === projects.length - 3 &&
+        window.innerWidth > 1701
+      ) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(activeIndex + 1);
+        console.log(activeIndex, "active Index");
+      }
+    }, 5000);
 
-    // return () => {
-    //   clearTimeout(interval);
-    // };
+    return () => {
+      clearTimeout(interval);
+    };
   }, [activeIndex]);
 
   return (
