@@ -8,7 +8,6 @@ import {
 } from "react-icons/md";
 
 const ProjectsContainer = (props: any) => {
-
   const [showItems, setShowItems] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
   const [length, setLength] = useState(projects.length);
@@ -100,19 +99,13 @@ const ProjectsContainer = (props: any) => {
             style={{ background: "transparent" }}
             onClick={(id: any) => handlePrev(id)}
           >
-            <MdOutlineArrowBackIos
-              className="icon"
-              style={{ color: "white", fontSize: "20px" }}
-            />
+            <MdOutlineArrowBackIos className="icon" />
           </button>
           <button
             style={{ background: "transparent" }}
             onClick={(id: any) => handleNext(id)}
           >
-            <MdOutlineArrowForwardIos
-              className="icon"
-              style={{ color: "white", fontSize: "20px" }}
-            />
+            <MdOutlineArrowForwardIos className="icon" />
           </button>
         </div>
       </footer>
@@ -185,6 +178,12 @@ const Wrapper = styled.section`
     .icon {
       cursor: pointer;
       font-size: 20px;
+      color: white;
+      font-weight: 600;
+
+      &:hover {
+        color: orange;
+      }
     }
   }
 `;
