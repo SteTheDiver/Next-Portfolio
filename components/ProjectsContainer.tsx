@@ -6,16 +6,31 @@ import {
   MdOutlineArrowBackIos,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
+import ProjectModal from "./ProjectModal";
 
-const ProjectsContainer = (props: any) => {
+export type ProjectProps = {
+  id: number;
+  description: string;
+  title: string;
+  github: string;
+  stack: Stack[];
+  url?: string | null;
+  image: string;
+};
+
+type Stack = {
+  id: number;
+  title: string;
+};
+
+const ProjectsContainer = () => {
   const [showItems, setShowItems] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
   const [length, setLength] = useState(projects.length);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any>([]);
 
-  // const [isRepeating, setIsRepeating] = useState(
-  //   infiniteLoop && children.projects > showItems
-  // );
-  // const [transitionEnabled, setTransitionEnabled] = useState(true);
+  console.log(showModal);
 
   const handlePrev = (id: number) => {
     if (activeIndex == 0) {
@@ -30,8 +45,16 @@ const ProjectsContainer = (props: any) => {
       return;
     } else {
       setActiveIndex(activeIndex + 1);
-      console.log(activeIndex);
     }
+  };
+
+  const handleOpenModal = (project: ProjectProps) => {
+    setShowModal(true);
+    setSelectedProject(project);
+    console.log(showModal);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -43,31 +66,28 @@ const ProjectsContainer = (props: any) => {
       setShowItems(3);
     }
 
-    const interval = setTimeout(() => {
-      if (activeIndex === projects.length - 1 && window.innerWidth < 700) {
-        setActiveIndex(0);
-        // setShowItems(1);
-        console.log(activeIndex);
-      } else if (
-        activeIndex === projects.length - 2 &&
-        window.innerWidth > 701 &&
-        window.innerWidth < 1700
-      ) {
-        setActiveIndex(0);
-      } else if (
-        activeIndex === projects.length - 3 &&
-        window.innerWidth > 1701
-      ) {
-        setActiveIndex(0);
-      } else {
-        setActiveIndex(activeIndex + 1);
-        console.log(activeIndex, "active Index");
-      }
-    }, 5000);
+    // const interval = setTimeout(() => {
+    //   if (activeIndex === projects.length - 1 && window.innerWidth < 700) {
+    //     setActiveIndex(0);
+    //   } else if (
+    //     activeIndex === projects.length - 2 &&
+    //     window.innerWidth > 701 &&
+    //     window.innerWidth < 1700
+    //   ) {
+    //     setActiveIndex(0);
+    //   } else if (
+    //     activeIndex === projects.length - 3 &&
+    //     window.innerWidth > 1701
+    //   ) {
+    //     setActiveIndex(0);
+    //   } else {
+    //     setActiveIndex(activeIndex + 1);
+    //   }
+    // }, 5000);
 
-    return () => {
-      clearTimeout(interval);
-    };
+    // return () => {
+    //   clearTimeout(interval);
+    // };
   }, [activeIndex]);
 
   return (
@@ -77,12 +97,30 @@ const ProjectsContainer = (props: any) => {
           <div className="carousel-content-wrapper">
             <div
               className={`carousel-content show-${showItems}`}
-              style={{
-                transform: `translateX(-${activeIndex * (100 / showItems)}%)`,
-              }}
+              style={
+                showModal
+                  ? { display: "none" }
+                  : {
+                      transform: `translateX(-${
+                        activeIndex * (100 / showItems)
+                      }%)`,
+                    }
+              }
             >
               {projects.map((project: any) => {
-                return <Project key={project.id} {...project} />;
+                //add a div for project and onCLick handler to open the modal
+                return (
+                  <div
+                    key={project.id}
+                    className="project-container"
+                    onClick={() => handleOpenModal(project)}
+                  >
+                    <img src={project.image} alt={project.title} />
+                    <div className="title-wrapper">
+                      <p className="title">{project.title}</p>
+                    </div>
+                  </div>
+                );
               })}
             </div>
           </div>
@@ -109,6 +147,12 @@ const ProjectsContainer = (props: any) => {
           </button>
         </div>
       </footer>
+      {showModal ? (
+        <ProjectModal
+          closeModal={handleCloseModal}
+          selectedProject={selectedProject}
+        />
+      ) : null}
     </Wrapper>
   );
 };
@@ -130,9 +174,6 @@ const Wrapper = styled.section`
       width: 100%;
       overflow: hidden;
       gap: 2rem;
-
-      overflow: hidden;
-      width: 100%;
       height: 100%;
 
       .carousel-content {
@@ -163,6 +204,50 @@ const Wrapper = styled.section`
 
       .carousel-content.show-4 > * {
         width: calc(100% / 4);
+      }
+
+      .project-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        img {
+          width: calc(100% - 10px);
+          height: 400px;
+          cursor: pointer;
+          border-radius: 10px;
+          object-fit: cover;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+
+          &:hover + .title-wrapper {
+            display: flex;
+            visibility: visible;
+            transform: translateY(-150%);
+          }
+        }
+
+        .title-wrapper {
+          height: 50px;
+          min-width: max-content;
+          background-color: orange;
+          position: absolute;
+          bottom: -50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          transition: all 0.3s ease-in-out;
+          border-radius: 10px;
+
+          p {
+            padding: 20px;
+            font-weight: 600;
+            color: white;
+          }
+        }
       }
     }
   }
