@@ -260,14 +260,19 @@ const Wrapper = styled.section`
     align-content: center;
     padding: 20px 0;
 
-    .icon {
-      cursor: pointer;
-      font-size: 20px;
-      color: white;
-      font-weight: 600;
+    button {
+      background: transparent;
+      border: none;
 
-      &:hover {
-        color: orange;
+      .icon {
+        cursor: pointer;
+        font-size: 20px;
+        color: white;
+        font-weight: 600;
+
+        &:hover {
+          color: orange;
+        }
       }
     }
   }
