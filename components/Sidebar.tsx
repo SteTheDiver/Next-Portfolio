@@ -20,9 +20,9 @@ const Sidebar = (props: Props) => {
       >
         <section className="content">
           <header className="content-header">
-            <button className="btn-close" onClick={props.toggleSidebar}>
+            {/* <button className="btn-close" onClick={props.toggleSidebar}>
               <FaTimes />
-            </button>
+            </button> */}
           </header>
           <ul className="nav-links">
             <li>
@@ -31,12 +31,20 @@ const Sidebar = (props: Props) => {
               </Link>
             </li>
             <li>
-              <Link className="link" href="">
+              <Link
+                className="link"
+                href="/projects"
+                onClick={props.toggleSidebar}
+              >
                 Projects
               </Link>
             </li>
             <li>
-              <Link className="link" href="/about" onClick={props.toggleSidebar}>
+              <Link
+                className="link"
+                href="/about"
+                onClick={props.toggleSidebar}
+              >
                 About
               </Link>
             </li>
@@ -57,15 +65,18 @@ const Wrapper = styled.aside`
     display: none;
   }
   .sidebar-container {
+    width: 35%;
+    transform: translate(105%);
     /* background: green; */
     position: fixed;
-    inset: 0;
+    right: 0;
+    /* inset: 0; */
     background: rgba(0, 0, 0, 1);
     display: flex;
     justify-content: center;
-    align-items: center;
-    z-index: -1;
-    opacity: 0;
+    align-items: flex-start;
+    /* z-index: -1; */
+    /* opacity: 0; */
     transition: var(--transition);
     height: 100%;
 
@@ -80,7 +91,11 @@ const Wrapper = styled.aside`
       .nav-links {
         width: fit-content;
         flex-direction: column;
-        transform: translate(100);
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: right;
+        padding: 20px;
 
         li {
           margin-bottom: 20px;
@@ -95,6 +110,11 @@ const Wrapper = styled.aside`
           }
         }
       }
+    }
+  }
+  @media screen and (min-width: 700px) {
+    .sidebar-container {
+      width: 25%;
     }
   }
 
@@ -115,6 +135,7 @@ const Wrapper = styled.aside`
   .show-sidebar {
     z-index: 99;
     opacity: 1;
+    transform: translate(0%);
   }
 `;
 
