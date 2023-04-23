@@ -82,8 +82,9 @@ const Wrapper = styled.nav`
 
   .navbar-center {
     display: flex;
-    width: 90vw;
     align-items: center;
+    width: 100%;
+    padding: 15px 20px;
     /* justify-content: space-between; */
   }
   .navbar-header {
@@ -100,6 +101,7 @@ const Wrapper = styled.nav`
     color: #7b8d93;
     display: flex;
     align-items: center;
+    padding: 0;
 
     :hover {
       color: orange;
@@ -136,7 +138,7 @@ const Wrapper = styled.nav`
       justify-content: space-evenly;
 
       .link {
-        font-size: 20px;
+        font-size: 1rem;
         :hover {
           color: orange;
         }

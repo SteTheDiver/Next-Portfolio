@@ -18,43 +18,36 @@ const Sidebar = (props: Props) => {
             : "sidebar-container"
         }
       >
-        <section className="content">
-          <header className="content-header">
-            {/* <button className="btn-close" onClick={props.toggleSidebar}>
-              <FaTimes />
-            </button> */}
-          </header>
-          <ul className="nav-links">
-            <li>
-              <Link className="link" href="/" onClick={props.toggleSidebar}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="link"
-                href="/projects"
-                onClick={props.toggleSidebar}
-              >
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="link"
-                href="/about"
-                onClick={props.toggleSidebar}
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link className="link" href="">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </section>
+        <ul className="nav-links">
+          <li>
+            <Link className="link" href="/" onClick={props.toggleSidebar}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="link"
+              href="/projects"
+              onClick={props.toggleSidebar}
+            >
+              Projects
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/about" onClick={props.toggleSidebar}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="link"
+              href="/contact"
+              onClick={props.toggleSidebar}
+            >
+              Contact
+            </Link>
+          </li>
+        </ul>
       </div>
     </Wrapper>
   );
@@ -65,56 +58,40 @@ const Wrapper = styled.aside`
     display: none;
   }
   .sidebar-container {
-    width: 35%;
     transform: translate(105%);
-    /* background: green; */
     position: fixed;
     right: 0;
-    /* inset: 0; */
     background: rgba(0, 0, 0, 1);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    /* z-index: -1; */
-    /* opacity: 0; */
     transition: var(--transition);
     height: 100%;
+    width: 25%;
+    z-index: 99;
 
-    .content {
-      /* border: 1px solid grey; */
-      /* padding: 30px; */
+    .nav-links {
+      width: fit-content;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: right;
+      padding: 20px;
 
-      .content-header {
-        display: flex;
-        justify-content: end;
-      }
-      .nav-links {
-        width: fit-content;
-        flex-direction: column;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: right;
-        padding: 20px;
+      li {
+        margin-bottom: 20px;
 
-        li {
-          margin-bottom: 20px;
+        .link {
+          font-size: 1rem;
+          margin-bottom: 50px;
+          color: white;
 
-          .link {
-            margin-bottom: 50px;
-            color: #7b8d93;
-
-            :hover {
-              color: orange;
-            }
+          :hover {
+            color: orange;
           }
         }
       }
-    }
-  }
-  @media screen and (min-width: 700px) {
-    .sidebar-container {
-      width: 25%;
     }
   }
 
@@ -133,7 +110,6 @@ const Wrapper = styled.aside`
     }
   }
   .show-sidebar {
-    z-index: 99;
     opacity: 1;
     transform: translate(0%);
   }
