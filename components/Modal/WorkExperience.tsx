@@ -2,49 +2,36 @@ import React from "react";
 
 import styled from "styled-components";
 
+import { workExperiences } from "../../utils/jobs_data";
+
 const WorkExperience = () => {
   return (
     <Wrapper>
       <header className="header">
         <h3 className="title">
-          Working <span style={{ color: "orange" }}>Timeline</span>{" "}
+          Working <span style={{ color: "orange" }}>Timeline</span>
         </h3>
       </header>
       <span className="separator"></span>
       <div className="timeline">
-        <div className="work-container">
-          <div className="content">
-            <div className="date-container">
-              <p>2021 - 2023</p>
+        {workExperiences.map((workExperience) => {
+          const { id, from, to, company, role } = workExperience;
+          return (
+            <div key={id} className="work-container">
+              <div className="content">
+                <div className="date-container">
+                  <p>
+                    {from} - {to}
+                  </p>
+                </div>
+                <div className="company-container">
+                  <span>{company}</span>
+                  <p>{role}</p>
+                </div>
+              </div>
             </div>
-            <div className="company-container">
-              <span>XPIS - Prague</span>
-              <p>React Developer</p>
-            </div>
-          </div>
-        </div>
-        <div className="work-container">
-          <div className="content">
-            <div className="date-container">
-              <p>2021 - 2023</p>
-            </div>
-            <div className="company-container">
-              <span>Freelance - Prague</span>
-              <p>Web developer</p>
-            </div>
-          </div>
-        </div>
-        <div className="work-container">
-          <div className="content">
-            <div className="date-container">
-              <p>2018 - 2020</p>
-            </div>
-            <div className="company-container">
-              <span>Exapro - Prague</span>
-              <p>Mentor</p>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </Wrapper>
   );
@@ -110,14 +97,15 @@ const Wrapper = styled.section`
     border-radius: 6px;
     height: fit-content;
     display: grid;
-    grid-template-columns: auto 130px;
+    grid-template-columns: auto 140px;
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
     /* border: 1px solid var(--separator-color); */
 
     .date-container {
-      padding: 0px 15px;
+      padding: 0px 12px;
+      margin-right: 5px;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -136,8 +124,11 @@ const Wrapper = styled.section`
       span {
         font-family: var(--font-text);
         color: white;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
+      }
+      p {
+        font-size: 14px;
       }
     }
   }

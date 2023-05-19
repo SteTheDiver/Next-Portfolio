@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import Link from "next/link";
+import { menuLinks } from "../utils/links_data";
 
 export type Props = {
   isSidebarOpen: boolean;
@@ -19,34 +20,16 @@ const Sidebar = (props: Props) => {
         }
       >
         <ul className="nav-links">
-          <li>
-            <Link className="link" href="/" onClick={props.toggleSidebar}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="link"
-              href="/projects"
-              onClick={props.toggleSidebar}
-            >
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link className="link" href="/about" onClick={props.toggleSidebar}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="link"
-              href="/contact"
-              onClick={props.toggleSidebar}
-            >
-              Contact
-            </Link>
-          </li>
+          {menuLinks.map((menuLink) => {
+            const { id, url, link } = menuLink;
+            return (
+              <li key={id}>
+                <Link className="link" href={url} onClick={props.toggleSidebar}>
+                  {link}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </Wrapper>

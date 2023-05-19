@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useRouter } from "next/router";
+import { menuLinks } from "../utils/links_data";
 
 type Props = {
   toggleSidebar: () => void;
@@ -11,8 +12,6 @@ type Props = {
 
 const Navbar = (props: Props) => {
   const router = useRouter();
-
-  // console.log(isActive);
 
   return (
     <Wrapper>
@@ -25,46 +24,24 @@ const Navbar = (props: Props) => {
             <AiOutlineMenu />
           </button>
         </div>
-        {/* Here we will map trought the array of obj containing all the info: id, text, path */}
         <ul className="nav-links">
-          <li>
-            <Link
-              className={router.pathname === "/" ? "link link-active" : "link"}
-              href="/"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={
-                router.pathname === "/about" ? "link link-active" : "link"
-              }
-              href="/about"
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={
-                router.pathname === "/projects" ? "link link-active" : "link"
-              }
-              href="/projects"
-            >
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={
-                router.pathname === "/contact" ? "link link-active" : "link"
-              }
-              href="/contact"
-            >
-              Contact
-            </Link>
-          </li>
+          {menuLinks.map((menuLink) => {
+            console.log(menuLink);
+
+            const { id, url, link } = menuLink;
+            return (
+              <li key={id}>
+                <Link
+                  className={
+                    router.pathname === url ? "link link-active" : "link"
+                  }
+                  href={`${url}`}
+                >
+                  {link}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </Wrapper>
